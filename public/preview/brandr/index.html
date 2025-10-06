@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrandForge - Content Library & Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Sidebar -->
+    <nav class="sidebar">
+        <div class="sidebar__header">
+            <h2 class="sidebar__title">BrandForge</h2>
+        </div>
+        <ul class="sidebar__menu">
+            <li><a href="#" class="sidebar__link active" data-section="dashboard">📊 Dashboard</a></li>
+            <li><a href="#" class="sidebar__link" data-section="foundation">🎯 Brand Foundation</a></li>
+            <li><a href="#" class="sidebar__link" data-section="library">📚 Content Library</a></li>
+            <li><a href="#" class="sidebar__link" data-section="generator">✨ Content Generator</a></li>
+            <li><a href="#" class="sidebar__link" data-section="templates">📋 Templates</a></li>
+            <li><a href="#" class="sidebar__link" data-section="extensions">🚀 Extensions</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="section__header">
+                <h1>Welcome to BrandForge</h1>
+                <p class="section__subtitle">Your progressive brand content library and generator</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-card__icon">📁</div>
+                    <div class="stat-card__content">
+                        <h3 class="stat-card__number" id="brand-assets">24</h3>
+                        <p class="stat-card__label">Brand Assets</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card__icon">📝</div>
+                    <div class="stat-card__content">
+                        <h3 class="stat-card__number" id="generated-content">47</h3>
+                        <p class="stat-card__label">Generated Content</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card__icon">📋</div>
+                    <div class="stat-card__content">
+                        <h3 class="stat-card__number" id="active-templates">8</h3>
+                        <p class="stat-card__label">Active Templates</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card__icon">📈</div>
+                    <div class="stat-card__content">
+                        <h3 class="stat-card__number" id="monthly-generation">15</h3>
+                        <p class="stat-card__label">This Month</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <h3>Quick Actions</h3>
+                <div class="quick-actions__grid">
+                    <button class="btn btn--primary action-btn" data-action="generate">✨ Generate Content</button>
+                    <button class="btn btn--outline action-btn" data-action="upload">📁 Add Asset</button>
+                    <button class="btn btn--outline action-btn" data-action="template">📋 Create Template</button>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="recent-activity">
+                <h3>Recent Activity</h3>
+                <div class="activity-list" id="activity-list">
+                    <!-- Activity items will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Brand Foundation Section -->
+        <section id="foundation" class="section">
+            <div class="section__header">
+                <h1>Brand Foundation</h1>
+                <p class="section__subtitle">Define your brand basics that power everything else</p>
+            </div>
+
+            <div class="foundation-container">
+                <div class="foundation-form">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Brand Basics</h3>
+                            <form id="brand-foundation-form">
+                                <div class="form-group">
+                                    <label class="form-label" for="brand-name">Brand Name</label>
+                                    <input type="text" id="brand-name" class="form-control" value="EcoFlow Packaging">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label" for="brand-tagline">Tagline</label>
+                                    <input type="text" id="brand-tagline" class="form-control" value="Sustainable solutions for modern brands">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label" for="brand-description">Description</label>
+                                    <textarea id="brand-description" class="form-control" rows="3">We create innovative, eco-friendly packaging solutions that help brands reduce their environmental impact while maintaining product quality and customer satisfaction.</textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label" for="brand-industry">Industry</label>
+                                    <input type="text" id="brand-industry" class="form-control" value="Sustainable Packaging">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label" for="brand-tone">Brand Tone</label>
+                                    <select id="brand-tone" class="form-control">
+                                        <option value="professional">Professional yet approachable</option>
+                                        <option value="casual">Casual and friendly</option>
+                                        <option value="authoritative">Authoritative and expert</option>
+                                        <option value="playful">Playful and creative</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label" for="target-audience">Target Audience</label>
+                                    <input type="text" id="target-audience" class="form-control" value="D2C brands and product companies">
+                                </div>
+                                
+                                <button type="submit" class="btn btn--primary">Save Foundation</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="foundation-preview">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Brand Preview</h3>
+                            <div class="brand-preview">
+                                <div class="brand-preview__logo">
+                                    <div class="logo-placeholder">EF</div>
+                                </div>
+                                <div class="brand-preview__content">
+                                    <h4 id="preview-name">EcoFlow Packaging</h4>
+                                    <p class="tagline" id="preview-tagline">Sustainable solutions for modern brands</p>
+                                    <p class="description" id="preview-description">We create innovative, eco-friendly packaging solutions...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Library Section -->
+        <section id="library" class="section">
+            <div class="section__header">
+                <h1>Content Library</h1>
+                <p class="section__subtitle">All your brand content, organized and searchable</p>
+            </div>
+
+            <div class="library-controls">
+                <div class="search-bar">
+                    <input type="text" id="library-search" class="form-control" placeholder="Search content...">
+                </div>
+                <div class="filter-controls">
+                    <select id="content-type-filter" class="form-control">
+                        <option value="">All Types</option>
+                        <option value="tagline">Taglines</option>
+                        <option value="description">Descriptions</option>
+                        <option value="social">Social Media</option>
+                        <option value="email">Email</option>
+                    </select>
+                    <select id="purpose-filter" class="form-control">
+                        <option value="">All Purposes</option>
+                        <option value="Social media bio">Social Media</option>
+                        <option value="Investor meetings">Investor Meetings</option>
+                        <option value="LinkedIn engagement">LinkedIn</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="content-grid" id="content-grid">
+                <!-- Content items will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Content Generator Section -->
+        <section id="generator" class="section">
+            <div class="section__header">
+                <h1>Content Generator</h1>
+                <p class="section__subtitle">Generate brand-consistent content for any purpose</p>
+            </div>
+
+            <div class="generator-container">
+                <div class="generator-form">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>What do you need?</h3>
+                            <form id="content-generator-form">
+                                <div class="form-group">
+                                    <label class="form-label" for="content-type">Content Type</label>
+                                    <select id="content-type" class="form-control">
+                                        <option value="">Select content type...</option>
+                                        <option value="Social Media Post">Social Media Post</option>
+                                        <option value="Email Subject Line">Email Subject Line</option>
+                                        <option value="Product Description">Product Description</option>
+                                        <option value="Press Release">Press Release</option>
+                                        <option value="VC Pitch Tagline">VC Pitch Tagline</option>
+                                        <option value="Website Copy">Website Copy</option>
+                                        <option value="Newsletter Content">Newsletter Content</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label" for="content-purpose">Purpose/Audience</label>
+                                    <select id="content-purpose" class="form-control">
+                                        <option value="">Select purpose...</option>
+                                        <option value="VC Pitch Application">VC Pitch Application</option>
+                                        <option value="Social Media Engagement">Social Media Engagement</option>
+                                        <option value="Customer Acquisition">Customer Acquisition</option>
+                                        <option value="Brand Awareness">Brand Awareness</option>
+                                        <option value="Product Launch">Product Launch</option>
+                                        <option value="Partnership Announcement">Partnership Announcement</option>
+                                        <option value="Thought Leadership">Thought Leadership</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label" for="content-length">Length Requirements</label>
+                                    <input type="text" id="content-length" class="form-control" placeholder="e.g., Under 200 characters, 2 paragraphs, etc.">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label" for="additional-context">Additional Context (Optional)</label>
+                                    <textarea id="additional-context" class="form-control" rows="2" placeholder="Any specific requirements, keywords, or context..."></textarea>
+                                </div>
+                                
+                                <button type="submit" class="btn btn--primary btn--full-width" id="generate-btn">
+                                    <span class="btn-text">Generate Content</span>
+                                    <span class="btn-loading hidden">Generating...</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="generator-output">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Generated Content</h3>
+                            <div class="output-area" id="output-area">
+                                <p class="output-placeholder">Your generated content will appear here</p>
+                            </div>
+                            <div class="output-actions hidden" id="output-actions">
+                                <button class="btn btn--outline" id="regenerate-btn">🔄 Regenerate</button>
+                                <button class="btn btn--secondary" id="edit-btn">✏️ Edit</button>
+                                <button class="btn btn--primary" id="save-btn">💾 Save to Library</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Templates Section -->
+        <section id="templates" class="section">
+            <div class="section__header">
+                <h1>Templates</h1>
+                <p class="section__subtitle">Reusable content templates for common use cases</p>
+            </div>
+
+            <div class="templates-grid" id="templates-grid">
+                <!-- Templates will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Extensions Section -->
+        <section id="extensions" class="section">
+            <div class="section__header">
+                <h1>Extensions</h1>
+                <p class="section__subtitle">Advanced tools to extend and scale your brand</p>
+            </div>
+
+            <div class="extensions-grid">
+                <div class="card extension-card">
+                    <div class="card__body">
+                        <h3>🎯 Brand Voice Analyzer</h3>
+                        <p>Analyze your existing content to refine your brand voice and tone guidelines.</p>
+                        <button class="btn btn--outline">Coming Soon</button>
+                    </div>
+                </div>
+                
+                <div class="card extension-card">
+                    <div class="card__body">
+                        <h3>📅 Content Calendar</h3>
+                        <p>Plan and schedule your content across multiple platforms and campaigns.</p>
+                        <button class="btn btn--outline">Coming Soon</button>
+                    </div>
+                </div>
+                
+                <div class="card extension-card">
+                    <div class="card__body">
+                        <h3>🔍 Consistency Checker</h3>
+                        <p>Automatically check new content against your brand guidelines and voice.</p>
+                        <button class="btn btn--outline">Coming Soon</button>
+                    </div>
+                </div>
+                
+                <div class="card extension-card">
+                    <div class="card__body">
+                        <h3>⚡ Batch Generator</h3>
+                        <p>Generate multiple content variations at once for different platforms and audiences.</p>
+                        <button class="btn btn--outline">Coming Soon</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for editing content -->
+    <div class="modal hidden" id="edit-modal">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content">
+            <div class="modal__header">
+                <h3>Edit Content</h3>
+                <button class="modal__close" id="modal-close">&times;</button>
+            </div>
+            <div class="modal__body">
+                <div class="form-group">
+                    <label class="form-label" for="edit-title">Title</label>
+                    <input type="text" id="edit-title" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="edit-content">Content</label>
+                    <textarea id="edit-content" class="form-control" rows="5"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="edit-purpose">Purpose</label>
+                    <input type="text" id="edit-purpose" class="form-control">
+                </div>
+            </div>
+            <div class="modal__footer">
+                <button class="btn btn--outline" id="modal-cancel">Cancel</button>
+                <button class="btn btn--primary" id="modal-save">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

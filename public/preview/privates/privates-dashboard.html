@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privates - Keep your secrets safe</title>
+    <link rel="stylesheet" href="privates-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar__header">
+            <h1 class="sidebar__logo">
+                <i class="fas fa-lock text-brand-main"></i>
+                Privates
+            </h1>
+            <p class="sidebar__tagline">Keep your secrets safe</p>
+        </div>
+        <nav class="sidebar__nav">
+            <a href="#" class="nav-item active" data-section="dashboard">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#" class="nav-item" data-section="stash">
+                <i class="fas fa-key"></i>
+                <span>Private Stash</span>
+            </a>
+            <a href="#" class="nav-item" data-section="circle">
+                <i class="fas fa-users"></i>
+                <span>Trusted Circle</span>
+            </a>
+            <a href="#" class="nav-item" data-section="activity">
+                <i class="fas fa-file-text"></i>
+                <span>Activity Log</span>
+            </a>
+            <a href="#" class="nav-item" data-section="preferences">
+                <i class="fas fa-cog"></i>
+                <span>Privacy Preferences</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header__search">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search your private stash..." class="form-control">
+                </div>
+            </div>
+            <div class="header__actions">
+                <button class="btn-icon theme-toggle" title="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="dropdown">
+                    <button class="btn-icon" title="Notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                </div>
+                <div class="user-menu">
+                    <button class="user-avatar">
+                        <span class="avatar">JD</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard View -->
+        <div id="dashboard" class="section active">
+            <div class="section-header">
+                <h2>Stash Overview</h2>
+                <div class="section-actions">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Stash Secret
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-card__icon">
+                        <i class="fas fa-key text-brand-main"></i>
+                    </div>
+                    <div class="stat-card__content">
+                        <h3 class="stat-card__number">15</h3>
+                        <p class="stat-card__label">Total Secrets</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-card__icon">
+                        <i class="fas fa-share-alt text-green-600"></i>
+                    </div>
+                    <div class="stat-card__content">
+                        <h3 class="stat-card__number">8</h3>
+                        <p class="stat-card__label">Active Shares</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-card__icon">
+                        <i class="fas fa-users text-blue-600"></i>
+                    </div>
+                    <div class="stat-card__content">
+                        <h3 class="stat-card__number">4</h3>
+                        <p class="stat-card__label">Trusted Members</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-card__icon">
+                        <i class="fas fa-clock text-orange-600"></i>
+                    </div>
+                    <div class="stat-card__content">
+                        <h3 class="stat-card__number">2</h3>
+                        <p class="stat-card__label">Expiring Soon</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>Recent Activity</h3>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-archive text-brand-main"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p><strong>Secret stashed</strong></p>
+                                <p class="text-muted">Redis Password added to production environment</p>
+                                <time class="activity-time">1 day ago</time>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-user-plus text-green-600"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p><strong>Access granted</strong></p>
+                                <p class="text-muted">Stripe API Key shared with Sarah Wilson</p>
+                                <time class="activity-time">2 hours ago</time>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-users text-blue-600"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p><strong>Team member added</strong></p>
+                                <p class="text-muted">Mike Chen joined the trusted circle</p>
+                                <time class="activity-time">2 days ago</time>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>Expiring Secrets</h3>
+                    <div class="expiring-list">
+                        <div class="expiring-item">
+                            <div class="expiring-info">
+                                <h4>JWT Secret</h4>
+                                <span class="badge badge-warning">Expires in 12 days</span>
+                            </div>
+                            <button class="btn btn-sm btn-outline">Renew</button>
+                        </div>
+                        
+                        <div class="expiring-item">
+                            <div class="expiring-info">
+                                <h4>OAuth Client Secret</h4>
+                                <span class="badge badge-danger">Expired</span>
+                            </div>
+                            <button class="btn btn-sm btn-primary">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Private Stash View -->
+        <div id="stash" class="section">
+            <div class="section-header">
+                <h2>Private Stash</h2>
+                <div class="section-actions">
+                    <button class="btn btn-outline">
+                        <i class="fas fa-download"></i>
+                        Export
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Stash Secret
+                    </button>
+                </div>
+            </div>
+
+            <div class="stash-filters">
+                <div class="filter-group">
+                    <input type="text" placeholder="Search secrets..." class="form-control">
+                    <select class="form-control">
+                        <option>All Types</option>
+                        <option>API Keys</option>
+                        <option>Passwords</option>
+                        <option>SSH Keys</option>
+                        <option>Tokens</option>
+                    </select>
+                    <select class="form-control">
+                        <option>All Status</option>
+                        <option>Active</option>
+                        <option>Expiring</option>
+                        <option>Expired</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="secrets-table">
+                <div class="table-header">
+                    <div class="table-row">
+                        <div class="table-cell">Name</div>
+                        <div class="table-cell">Type</div>
+                        <div class="table-cell">Status</div>
+                        <div class="table-cell">Expires</div>
+                        <div class="table-cell">Shared</div>
+                        <div class="table-cell">Actions</div>
+                    </div>
+                </div>
+                
+                <div class="table-body">
+                    <div class="table-row">
+                        <div class="table-cell">
+                            <div class="secret-info">
+                                <h4>Stripe API Key</h4>
+                                <span class="tag">production</span>
+                                <span class="tag">payment</span>
+                            </div>
+                        </div>
+                        <div class="table-cell">
+                            <span class="type-badge api-key">API Key</span>
+                        </div>
+                        <div class="table-cell">
+                            <span class="status-dot status-dot-active"></span>
+                            Active
+                        </div>
+                        <div class="table-cell">Dec 15, 2025</div>
+                        <div class="table-cell">
+                            <i class="fas fa-users text-green-600"></i>
+                            Shared
+                        </div>
+                        <div class="table-cell">
+                            <div class="action-buttons">
+                                <button class="btn-icon" title="View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-icon" title="Copy">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <button class="btn-icon" title="Share">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-row">
+                        <div class="table-cell">
+                            <div class="secret-info">
+                                <h4>Database Password</h4>
+                                <span class="tag">production</span>
+                                <span class="tag">database</span>
+                            </div>
+                        </div>
+                        <div class="table-cell">
+                            <span class="type-badge password">Password</span>
+                        </div>
+                        <div class="table-cell">
+                            <span class="status-dot status-dot-active"></span>
+                            Active
+                        </div>
+                        <div class="table-cell">Feb 22, 2026</div>
+                        <div class="table-cell">
+                            <i class="fas fa-lock text-gray-400"></i>
+                            Private
+                        </div>
+                        <div class="table-cell">
+                            <div class="action-buttons">
+                                <button class="btn-icon" title="View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-icon" title="Copy">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <button class="btn-icon" title="Share">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-row">
+                        <div class="table-cell">
+                            <div class="secret-info">
+                                <h4>JWT Secret</h4>
+                                <span class="tag">auth</span>
+                                <span class="tag">backend</span>
+                            </div>
+                        </div>
+                        <div class="table-cell">
+                            <span class="type-badge token">Token</span>
+                        </div>
+                        <div class="table-cell">
+                            <span class="status-dot status-dot-expiring"></span>
+                            Expiring Soon
+                        </div>
+                        <div class="table-cell">Oct 15, 2025</div>
+                        <div class="table-cell">
+                            <i class="fas fa-users text-green-600"></i>
+                            Shared
+                        </div>
+                        <div class="table-cell">
+                            <div class="action-buttons">
+                                <button class="btn-icon" title="View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-icon" title="Copy">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <button class="btn-icon" title="Share">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trusted Circle View -->
+        <div id="circle" class="section">
+            <div class="section-header">
+                <h2>Trusted Circle</h2>
+                <div class="section-actions">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i>
+                        Invite Member
+                    </button>
+                </div>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-card__avatar">
+                        <span class="avatar avatar-lg">JD</span>
+                    </div>
+                    <div class="team-card__info">
+                        <h3>John Doe</h3>
+                        <p class="text-muted">john@company.com</p>
+                        <span class="badge badge-primary">Admin</span>
+                    </div>
+                    <div class="team-card__meta">
+                        <p class="text-sm text-muted">Active 2 hours ago</p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-card__avatar">
+                        <span class="avatar avatar-lg">SW</span>
+                    </div>
+                    <div class="team-card__info">
+                        <h3>Sarah Wilson</h3>
+                        <p class="text-muted">sarah@company.com</p>
+                        <span class="badge badge-secondary">Member</span>
+                    </div>
+                    <div class="team-card__meta">
+                        <p class="text-sm text-muted">Active 1 day ago</p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-card__avatar">
+                        <span class="avatar avatar-lg">MC</span>
+                    </div>
+                    <div class="team-card__info">
+                        <h3>Mike Chen</h3>
+                        <p class="text-muted">mike@company.com</p>
+                        <span class="badge badge-secondary">Viewer</span>
+                    </div>
+                    <div class="team-card__meta">
+                        <p class="text-sm text-muted">Active 3 days ago</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity Log View -->
+        <div id="activity" class="section">
+            <div class="section-header">
+                <h2>Activity Log</h2>
+                <div class="section-actions">
+                    <button class="btn btn-outline">
+                        <i class="fas fa-download"></i>
+                        Export Logs
+                    </button>
+                </div>
+            </div>
+
+            <div class="activity-filters">
+                <select class="form-control">
+                    <option>All Actions</option>
+                    <option>Secret Created</option>
+                    <option>Secret Accessed</option>
+                    <option>Secret Shared</option>
+                    <option>Team Changes</option>
+                </select>
+                <select class="form-control">
+                    <option>All Users</option>
+                    <option>John Doe</option>
+                    <option>Sarah Wilson</option>
+                    <option>Mike Chen</option>
+                </select>
+                <input type="date" class="form-control">
+            </div>
+
+            <div class="activity-timeline">
+                <div class="activity-item">
+                    <div class="activity-time">2 hours ago</div>
+                    <div class="activity-icon">
+                        <i class="fas fa-share text-green-600"></i>
+                    </div>
+                    <div class="activity-content">
+                        <p><strong>Access granted</strong></p>
+                        <p class="text-muted">John Doe shared "Stripe API Key" with Sarah Wilson</p>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-time">1 day ago</div>
+                    <div class="activity-icon">
+                        <i class="fas fa-archive text-brand-main"></i>
+                    </div>
+                    <div class="activity-content">
+                        <p><strong>Secret stashed</strong></p>
+                        <p class="text-muted">Emma Rodriguez added "Redis Password" to production environment</p>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-time">2 days ago</div>
+                    <div class="activity-icon">
+                        <i class="fas fa-user-plus text-blue-600"></i>
+                    </div>
+                    <div class="activity-content">
+                        <p><strong>Team member added</strong></p>
+                        <p class="text-muted">John Doe invited Mike Chen to join the trusted circle</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Privacy Preferences View -->
+        <div id="preferences" class="section">
+            <div class="section-header">
+                <h2>Privacy Preferences</h2>
+            </div>
+
+            <div class="preferences-grid">
+                <div class="preferences-card">
+                    <h3>Account Settings</h3>
+                    <div class="form-group">
+                        <label class="form-label">Display Name</label>
+                        <input type="text" class="form-control" value="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" value="john@company.com">
+                    </div>
+                    <button class="btn btn-primary">Save Changes</button>
+                </div>
+
+                <div class="preferences-card">
+                    <h3>Security Settings</h3>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Two-Factor Authentication</h4>
+                            <p class="text-muted">Add an extra layer of security</p>
+                        </div>
+                        <label class="toggle">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Session Timeout</h4>
+                            <p class="text-muted">Auto-logout after inactivity</p>
+                        </div>
+                        <select class="form-control">
+                            <option>30 minutes</option>
+                            <option>1 hour</option>
+                            <option>4 hours</option>
+                            <option>Never</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="preferences-card">
+                    <h3>Notifications</h3>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Secret Expiration Alerts</h4>
+                            <p class="text-muted">Get notified before secrets expire</p>
+                        </div>
+                        <label class="toggle">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Team Activity</h4>
+                            <p class="text-muted">Notifications for team changes</p>
+                        </div>
+                        <label class="toggle">
+                            <input type="checkbox">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Loading States -->
+    <div id="loading" class="loading-overlay hidden">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p id="loading-text">Securing your privates...</p>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="modal-backdrop" class="modal-backdrop hidden">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modal-title">Modal Title</h3>
+                <button class="btn-icon modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Modal content will be inserted here -->
+            </div>
+            <div class="modal-footer" id="modal-footer">
+                <!-- Modal buttons will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="privates-app.js"></script>
+</body>
+</html>

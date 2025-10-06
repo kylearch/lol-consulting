@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TherapySpeed - Find Your Perfect Therapist Match</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="nav">
+                <div class="nav__brand">
+                    <h2>TherapySpeed</h2>
+                </div>
+                <div class="nav__actions" id="navActions">
+                    <button class="btn btn--outline nav__login" id="navLogin">Login</button>
+                    <button class="btn btn--primary nav__signup" id="navSignup">Sign Up</button>
+                </div>
+                <div class="nav__user hidden" id="navUser">
+                    <span class="nav__welcome" id="navWelcome">Welcome, User</span>
+                    <button class="btn btn--outline" id="navLogout">Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- Landing Page -->
+        <section class="view" id="landingView">
+            <div class="hero">
+                <div class="container">
+                    <div class="hero__content">
+                        <h1 class="hero__title">Find Your Perfect Therapist in Minutes, Not Months</h1>
+                        <p class="hero__subtitle">Experience speed therapy sessions - brief video calls with multiple therapists to find the best match for your mental health journey.</p>
+                        <div class="hero__actions">
+                            <button class="btn btn--primary btn--lg" id="heroGetStarted">Get Started</button>
+                            <button class="btn btn--outline btn--lg" id="heroLearnMore">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="features">
+                <div class="container">
+                    <h2 class="features__title">How TherapySpeed Works</h2>
+                    <div class="features__grid">
+                        <div class="feature">
+                            <div class="feature__icon">👥</div>
+                            <h3>Join a Session</h3>
+                            <p>Browse available speed therapy sessions and join one that fits your schedule.</p>
+                        </div>
+                        <div class="feature">
+                            <div class="feature__icon">⏱️</div>
+                            <h3>Quick Conversations</h3>
+                            <p>Spend 5-7 minutes with each therapist in structured video calls.</p>
+                        </div>
+                        <div class="feature">
+                            <div class="feature__icon">⭐</div>
+                            <h3>Rate & Match</h3>
+                            <p>Rate each interaction and get matched with your top-rated therapists.</p>
+                        </div>
+                        <div class="feature">
+                            <div class="feature__icon">📅</div>
+                            <h3>Book Follow-up</h3>
+                            <p>Schedule full sessions with therapists you connected with.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Authentication View -->
+        <section class="view hidden" id="authView">
+            <div class="container">
+                <div class="auth">
+                    <div class="auth__header">
+                        <h2 id="authTitle">Welcome to TherapySpeed</h2>
+                        <p id="authSubtitle">Sign in to your account or create a new one</p>
+                    </div>
+                    
+                    <div class="auth__form">
+                        <form id="authForm">
+                            <div class="form-group">
+                                <label class="form-label" for="authEmail">Email</label>
+                                <input type="email" class="form-control" id="authEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="authPassword">Password</label>
+                                <input type="password" class="form-control" id="authPassword" required>
+                            </div>
+                            <div class="form-group" id="nameGroup">
+                                <label class="form-label" for="authName">Full Name</label>
+                                <input type="text" class="form-control" id="authName">
+                            </div>
+                            <div class="form-group" id="roleGroup">
+                                <label class="form-label">I am a:</label>
+                                <div class="role-selector">
+                                    <label class="role-option">
+                                        <input type="radio" name="userRole" value="client" checked>
+                                        <span class="role-option__content">
+                                            <strong>Client</strong>
+                                            <small>Looking for a therapist</small>
+                                        </span>
+                                    </label>
+                                    <label class="role-option">
+                                        <input type="radio" name="userRole" value="therapist">
+                                        <span class="role-option__content">
+                                            <strong>Therapist</strong>
+                                            <small>Providing therapy services</small>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn--primary btn--full-width" id="authSubmit">Sign In</button>
+                        </form>
+                        
+                        <div class="auth__switch">
+                            <p>
+                                <span id="authSwitchText">Don't have an account?</span>
+                                <button class="auth__switch-btn" id="authSwitchBtn">Sign up</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard View -->
+        <section class="view hidden" id="dashboardView">
+            <div class="container">
+                <div class="dashboard">
+                    <div class="dashboard__header">
+                        <h2 id="dashboardTitle">Dashboard</h2>
+                        <button class="btn btn--primary" id="dashboardPrimary">Browse Sessions</button>
+                    </div>
+                    
+                    <!-- Client Dashboard -->
+                    <div class="dashboard__content" id="clientDashboard">
+                        <div class="dashboard__grid">
+                            <div class="card">
+                                <div class="card__body">
+                                    <h3>Available Sessions</h3>
+                                    <p class="dashboard__stat" id="availableSessionsCount">3</p>
+                                    <p>Sessions you can join</p>
+                                    <button class="btn btn--outline" id="browseSessions">Browse All</button>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card__body">
+                                    <h3>Past Matches</h3>
+                                    <p class="dashboard__stat" id="pastMatchesCount">0</p>
+                                    <p>Therapists you've connected with</p>
+                                    <button class="btn btn--outline" id="viewMatches">View History</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="upcoming-sessions">
+                            <h3>Upcoming Sessions</h3>
+                            <div id="upcomingSessionsList">
+                                <p class="empty-state">No upcoming sessions scheduled</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Therapist Dashboard -->
+                    <div class="dashboard__content hidden" id="therapistDashboard">
+                        <div class="dashboard__grid">
+                            <div class="card">
+                                <div class="card__body">
+                                    <h3>Active Sessions</h3>
+                                    <p class="dashboard__stat">2</p>
+                                    <p>Sessions you're participating in</p>
+                                    <button class="btn btn--outline" id="manageActiveSessions">Manage</button>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card__body">
+                                    <h3>Client Feedback</h3>
+                                    <p class="dashboard__stat">4.8</p>
+                                    <p>Average rating from speed sessions</p>
+                                    <button class="btn btn--outline" id="viewFeedback">View Feedback</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="session-management">
+                            <h3>Create New Session</h3>
+                            <button class="btn btn--primary" id="createSession">Create Session</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Session Browser View -->
+        <section class="view hidden" id="sessionBrowserView">
+            <div class="container">
+                <div class="session-browser">
+                    <div class="session-browser__header">
+                        <h2>Available Speed Therapy Sessions</h2>
+                        <button class="btn btn--outline" id="backToDashboard">← Back to Dashboard</button>
+                    </div>
+                    
+                    <div class="sessions-grid" id="sessionsGrid">
+                        <!-- Sessions will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Active Session View -->
+        <section class="view hidden" id="activeSessionView">
+            <div class="session-room">
+                <div class="session-header">
+                    <div class="session-info">
+                        <h3 id="currentTherapistName">Dr. Sarah Chen</h3>
+                        <p id="currentTherapistSpecialty">Anxiety & Depression</p>
+                    </div>
+                    <div class="session-timer">
+                        <div class="timer-display">
+                            <span id="timerMinutes">07</span>:<span id="timerSeconds">00</span>
+                        </div>
+                        <div class="timer-progress">
+                            <div class="timer-progress__bar" id="timerProgress"></div>
+                        </div>
+                    </div>
+                    <div class="session-progress">
+                        <span id="sessionProgress">Therapist 1 of 6</span>
+                    </div>
+                </div>
+                
+                <div class="video-container">
+                    <div class="video-grid">
+                        <div class="video-participant">
+                            <div class="video-placeholder therapist-video">
+                                <div class="video-overlay">
+                                    <img id="therapistAvatar" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=300&h=300&fit=crop&crop=face" alt="Therapist">
+                                </div>
+                                <div class="video-label">
+                                    <span id="therapistVideoLabel">Dr. Sarah Chen</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="video-participant">
+                            <div class="video-placeholder client-video">
+                                <div class="video-overlay">
+                                    <div class="avatar-placeholder">You</div>
+                                </div>
+                                <div class="video-label">
+                                    <span>You</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="session-controls">
+                    <button class="btn btn--outline session-control-btn" id="muteBtn">
+                        🎤 Mute
+                    </button>
+                    <button class="btn btn--outline session-control-btn" id="videoBtn">
+                        📹 Video
+                    </button>
+                    <button class="btn btn--primary session-next-btn" id="nextBtn">
+                        Next Therapist →
+                    </button>
+                    <button class="btn btn--outline session-control-btn" id="exitBtn">
+                        Exit Session
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rating View -->
+        <section class="view hidden" id="ratingView">
+            <div class="container">
+                <div class="rating-container">
+                    <div class="rating-header">
+                        <h2>Rate Your Conversation</h2>
+                        <p>How was your session with <strong id="ratingTherapistName">Dr. Sarah Chen</strong>?</p>
+                    </div>
+                    
+                    <div class="rating-form">
+                        <div class="stars-rating">
+                            <div class="stars" id="starsRating">
+                                <span class="star" data-rating="1">★</span>
+                                <span class="star" data-rating="2">★</span>
+                                <span class="star" data-rating="3">★</span>
+                                <span class="star" data-rating="4">★</span>
+                                <span class="star" data-rating="5">★</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="ratingFeedback">Brief feedback (optional)</label>
+                            <textarea class="form-control" id="ratingFeedback" rows="3" placeholder="What did you think about this therapist?"></textarea>
+                        </div>
+                        
+                        <div class="rating-actions">
+                            <button class="btn btn--outline" id="skipRating">Skip</button>
+                            <button class="btn btn--primary" id="submitRating">Continue</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results View -->
+        <section class="view hidden" id="resultsView">
+            <div class="container">
+                <div class="results">
+                    <div class="results__header">
+                        <h2>Your Therapy Matches</h2>
+                        <p>Based on your ratings, here are your top therapist matches</p>
+                    </div>
+                    
+                    <div class="matches-grid" id="matchesGrid">
+                        <!-- Matches will be populated by JavaScript -->
+                    </div>
+                    
+                    <div class="results__actions">
+                        <button class="btn btn--outline" id="backToDashboardFromResults">Back to Dashboard</button>
+                        <button class="btn btn--primary" id="findMoreSessions">Find More Sessions</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile View -->
+        <section class="view hidden" id="profileView">
+            <div class="container">
+                <div class="profile">
+                    <div class="profile__header">
+                        <h2>Profile Settings</h2>
+                        <button class="btn btn--outline" id="backToDashboardFromProfile">← Back</button>
+                    </div>
+                    
+                    <div class="profile__form">
+                        <form id="profileForm">
+                            <div class="form-group">
+                                <label class="form-label" for="profileName">Full Name</label>
+                                <input type="text" class="form-control" id="profileName">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="profileEmail">Email</label>
+                                <input type="email" class="form-control" id="profileEmail">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="profileRole">Account Type</label>
+                                <select class="form-control" id="profileRole" disabled>
+                                    <option value="client">Client</option>
+                                    <option value="therapist">Therapist</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn--primary">Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
