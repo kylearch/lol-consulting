@@ -25,6 +25,10 @@ Route::get('/preview/todos', function () {
     return response()->file(public_path('preview/todos/index.html'));
 })->name('preview.todos');
 
+Route::get('/preview/sponsors', function () {
+    return response()->file(public_path('preview/sponsors/index.html'));
+})->name('preview.sponsors');
+
 Route::middleware([
     'auth',
     ValidateSessionWithWorkOS::class,

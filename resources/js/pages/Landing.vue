@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { router, useForm, usePage } from '@inertiajs/vue3';
 
 const page = usePage();
@@ -17,7 +17,8 @@ const subApps = [
     ],
     url: 'https://privates.lol',
     previewUrl: '/preview/privates',
-    status: 'Live'
+    status: 'Coming Soon',
+    primaryColor: 'var(--coral)'
   },
   {
     name: 'brandr.lol',
@@ -29,7 +30,8 @@ const subApps = [
     ],
     url: 'https://brandr.lol',
     previewUrl: '/preview/brandr',
-    status: 'Live'
+    status: 'Coming Soon',
+    primaryColor: 'var(--mint)'
   },
   {
     name: 'therapy.lol',
@@ -41,7 +43,8 @@ const subApps = [
     ],
     url: '#',
     previewUrl: '/preview/therapy',
-    status: 'Preview'
+    status: 'Coming Soon',
+    primaryColor: 'var(--lavender)'
   },
   {
     name: 'todos.lol',
@@ -53,7 +56,21 @@ const subApps = [
     ],
     url: '#',
     previewUrl: '/preview/todos',
-    status: 'Preview'
+    status: 'Coming Soon',
+    primaryColor: 'var(--sky)'
+  },
+  {
+    name: 'sponsors.lol',
+    description: 'A platform to manage sponsorship outreach and track your sponsor relationships efficiently.',
+    features: [
+      'Outreach management',
+      'Sponsor tracking',
+      'Relationship building'
+    ],
+    url: '#',
+    previewUrl: '/preview/sponsors',
+    status: 'Coming Soon',
+    primaryColor: 'var(--rose)'
   }
 ];
 
@@ -146,6 +163,81 @@ const form = useForm({
   description: ''
 });
 
+// Helper to split product name into brand and TLD for color styling
+const splitProductName = (name: string) => {
+  const parts = name.split('.');
+  return {
+    brand: parts[0],
+    tld: parts.length > 1 ? `.${parts.slice(1).join('.')}` : ''
+  };
+};
+
+// Color contrast utilities
+const hexToRgb = (hex: string) => {
+  // Handle CSS variables
+  if (hex.startsWith('var(')) {
+    // Extract CSS variable value from computed styles
+    const temp = document.createElement('div');
+    temp.style.color = hex;
+    document.body.appendChild(temp);
+    const computed = getComputedStyle(temp).color;
+    document.body.removeChild(temp);
+
+    const match = computed.match(/\d+/g);
+    if (match) {
+      return {
+        r: parseInt(match[0]),
+        g: parseInt(match[1]),
+        b: parseInt(match[2])
+      };
+    }
+  }
+
+  // Handle hex colors
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16)
+  } : { r: 0, g: 0, b: 0 };
+};
+
+const getLuminance = (r: number, g: number, b: number) => {
+  const [rs, gs, bs] = [r, g, b].map(c => {
+    c = c / 255;
+    return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+  });
+  return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
+};
+
+const getContrastRatio = (color1: string, color2: string) => {
+  const rgb1 = hexToRgb(color1);
+  const rgb2 = hexToRgb(color2);
+  const lum1 = getLuminance(rgb1.r, rgb1.g, rgb1.b);
+  const lum2 = getLuminance(rgb2.r, rgb2.g, rgb2.b);
+  const brightest = Math.max(lum1, lum2);
+  const darkest = Math.min(lum1, lum2);
+  return (brightest + 0.05) / (darkest + 0.05);
+};
+
+// Get contrasting text color (black or white) for a given background
+const getContrastingTextColor = (backgroundColor: string) => {
+  const whiteContrast = getContrastRatio(backgroundColor, '#FFFFFF');
+  const blackContrast = getContrastRatio(backgroundColor, '#000000');
+  // WCAG AA requires 4.5:1 for normal text, 3:1 for large text
+  // Return black for light backgrounds, white for dark backgrounds
+  return blackContrast > whiteContrast ? '#000000' : '#FFFFFF';
+};
+
+// Darken a color for better contrast (for pastel colors on white)
+const darkenColor = (color: string, amount: number = 0.3) => {
+  const rgb = hexToRgb(color);
+  const r = Math.max(0, Math.floor(rgb.r * (1 - amount)));
+  const g = Math.max(0, Math.floor(rgb.g * (1 - amount)));
+  const b = Math.max(0, Math.floor(rgb.b * (1 - amount)));
+  return `rgb(${r}, ${g}, ${b})`;
+};
+
 const scrollToSection = (sectionId: string) => {
   const element = document.getElementById(sectionId);
   if (element) {
@@ -166,6 +258,39 @@ const submitContactForm = () => {
     },
   });
 };
+
+// Initialize rainbow text after component mounts
+onMounted(() => {
+  // Call the rainbow text initialization from lol.js
+  const rainbowElements = document.querySelectorAll('[data-letters]');
+
+  rainbowElements.forEach(element => {
+    const text = element.getAttribute('data-letters');
+    if (!text) return;
+
+    // Rainbow color mapping (from lol.js)
+    const rainbowColors: Record<string, string> = {
+      'c': '#FFB3BA', // Coral
+      'o': '#FFDFBA', // Peach
+      'n': '#D9FFB3', // Lime
+      's': '#BAFFC9', // Mint
+      'u': '#BAE1FF', // Sky
+      'l': '#C9BAFF', // Lavender
+      't': '#FFBAFF', // Magenta
+      'i': '#FFB3D9', // Rose
+      'g': '#B3D9FF'  // Periwinkle
+    };
+
+    let coloredHTML = '';
+    for (let i = 0; i < text.length; i++) {
+      const letter = text[i];
+      const color = rainbowColors[letter] || '#000';
+      coloredHTML += `<span class="rainbow-letter" style="color: ${color}">${letter}</span>`;
+    }
+
+    element.innerHTML = coloredHTML;
+  });
+});
 </script>
 
 <template>
@@ -175,7 +300,7 @@ const submitContactForm = () => {
       <div class="lol-container">
         <div class="lol-nav__content">
           <div class="lol-nav__brand">
-            <span class="lol-brand-name">lol.consulting</span>
+            <span class="lol-brand-name">lol.<span data-letters="consulting"></span></span>
           </div>
           <div class="lol-nav__links">
             <a href="#products" @click.prevent="scrollToSection('products')" class="lol-nav__link">Products</a>
@@ -214,8 +339,10 @@ const submitContactForm = () => {
         <div class="lol-products__grid">
           <div v-for="app in subApps" :key="app.name" class="lol-product-card">
             <div class="lol-product-card__header">
-              <h3 class="lol-product-card__title">{{ app.name }}</h3>
-              <div :class="['lol-status', app.status === 'Live' ? 'lol-status--success' : 'lol-status--info']">
+              <h3 class="lol-product-card__title">
+                <span class="product-brand-name" :style="{ color: darkenColor(app.primaryColor, 0.2) }">{{ splitProductName(app.name).brand }}</span><span>{{ splitProductName(app.name).tld }}</span>
+              </h3>
+              <div :class="['lol-status', 'lol-status--warning']">
                 {{ app.status }}
               </div>
             </div>
@@ -227,7 +354,7 @@ const submitContactForm = () => {
               <a :href="app.previewUrl" target="_blank" class="lol-btn lol-btn--outline lol-btn--full-width">
                 Preview
               </a>
-              <a v-if="app.url !== '#'" :href="app.url" target="_blank" rel="noopener noreferrer" class="lol-btn lol-btn--primary lol-btn--full-width">
+              <a v-if="app.url !== '#'" :href="app.url" target="_blank" rel="noopener noreferrer" class="lol-btn lol-btn--primary lol-btn--full-width" :style="{ background: app.primaryColor, borderColor: app.primaryColor, color: getContrastingTextColor(app.primaryColor) }">
                 Learn More
               </a>
             </div>
@@ -396,7 +523,7 @@ const submitContactForm = () => {
       <div class="lol-container">
         <div class="lol-footer__content">
           <div class="lol-footer__brand">
-            <div class="lol-brand-name">lol.consulting</div>
+            <div class="lol-brand-name">lol.<span data-letters="consulting"></span></div>
             <p>Building micro-saas tools for solo founders</p>
           </div>
           <div class="lol-footer__links">
@@ -404,7 +531,9 @@ const submitContactForm = () => {
               <h4>Products</h4>
               <ul>
                 <li v-for="app in subApps" :key="app.name">
-                  <a :href="app.url" target="_blank" rel="noopener noreferrer">{{ app.name }}</a>
+                  <a :href="app.url" target="_blank" rel="noopener noreferrer">
+                    <span :style="{ color: darkenColor(app.primaryColor, 0.2) }">{{ splitProductName(app.name).brand }}</span><span>{{ splitProductName(app.name).tld }}</span>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -465,6 +594,15 @@ const submitContactForm = () => {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-primary);
+}
+
+/* Enhanced contrast for rainbow letters */
+.lol-brand-name .rainbow-letter {
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.15),
+    0 0 1px rgba(0, 0, 0, 0.1);
+  font-weight: var(--font-weight-bold);
+  filter: saturate(1.2) brightness(0.85);
 }
 
 .lol-nav__links {
@@ -586,6 +724,10 @@ const submitContactForm = () => {
   font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-text);
+}
+
+.lol-product-card__title .product-brand-name {
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 
 .lol-product-card__description {
@@ -975,6 +1117,12 @@ const submitContactForm = () => {
   background-color: rgba(var(--color-info-rgb), var(--status-bg-opacity));
   color: var(--color-info);
   border: 1px solid rgba(var(--color-info-rgb), var(--status-border-opacity));
+}
+
+.lol-status--warning {
+  background-color: rgba(var(--color-warning-rgb), var(--status-bg-opacity));
+  color: var(--color-warning);
+  border: 1px solid rgba(var(--color-warning-rgb), var(--status-border-opacity));
 }
 
 /* Footer */

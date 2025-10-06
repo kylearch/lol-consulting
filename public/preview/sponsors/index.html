@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sponsors.lol - Sponsorship Outreach Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/preview/reset.css">
+    <link rel="stylesheet" href="/preview/preview-globals.css">
+    <link rel="stylesheet" href="/preview/sponsors/style.css">
+    <style>
+        .preview-badge {
+            display: inline-block;
+            background: rgba(255, 179, 217, 0.3);
+            color: #c45a8a;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1 class="logo">
+                <i class="fas fa-handshake"></i>
+                sponsors.lol
+                <span class="preview-badge">Preview</span>
+            </h1>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active">
+                <i class="fas fa-tachometer-alt"></i>
+                Dashboard
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-users"></i>
+                Sponsors
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-paper-plane"></i>
+                Outreach
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-chart-line"></i>
+                Analytics
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-cog"></i>
+                Settings
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h2>Sponsorship Dashboard</h2>
+                <button class="btn btn-primary">
+                    <i class="fas fa-plus"></i>
+                    New Outreach
+                </button>
+            </div>
+        </header>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>24</h3>
+                    <p>Outreach Sent</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>18</h3>
+                    <p>Opened</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-reply"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>12</h3>
+                    <p>Responses</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>5</h3>
+                    <p>Active Sponsors</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Outreach -->
+        <div class="content-section">
+            <div class="section-header">
+                <h3>Recent Outreach</h3>
+                <div class="section-actions">
+                    <button class="btn btn-outline">
+                        <i class="fas fa-filter"></i>
+                        Filter
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Sponsor</th>
+                            <th>Status</th>
+                            <th>Last Contact</th>
+                            <th>Response Rate</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="sponsor-info">
+                                    <div class="avatar">AC</div>
+                                    <div>
+                                        <div class="sponsor-name">Acme Corp</div>
+                                        <div class="sponsor-email">sponsors@acme.com</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="badge badge-success">Responded</span></td>
+                            <td>2 days ago</td>
+                            <td>85%</td>
+                            <td>
+                                <button class="btn-icon" title="View"><i class="fas fa-eye"></i></button>
+                                <button class="btn-icon" title="Edit"><i class="fas fa-edit"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="sponsor-info">
+                                    <div class="avatar">TI</div>
+                                    <div>
+                                        <div class="sponsor-name">Tech Innovations</div>
+                                        <div class="sponsor-email">hello@techinnovations.io</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="badge badge-warning">Pending</span></td>
+                            <td>5 days ago</td>
+                            <td>60%</td>
+                            <td>
+                                <button class="btn-icon" title="View"><i class="fas fa-eye"></i></button>
+                                <button class="btn-icon" title="Edit"><i class="fas fa-edit"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="sponsor-info">
+                                    <div class="avatar">DS</div>
+                                    <div>
+                                        <div class="sponsor-name">Digital Solutions</div>
+                                        <div class="sponsor-email">partnerships@digitalsol.com</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="badge badge-info">In Discussion</span></td>
+                            <td>1 week ago</td>
+                            <td>75%</td>
+                            <td>
+                                <button class="btn-icon" title="View"><i class="fas fa-eye"></i></button>
+                                <button class="btn-icon" title="Edit"><i class="fas fa-edit"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

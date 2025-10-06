@@ -4,17 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>todos.lol - Simple Task Management</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/preview/reset.css">
+    <link rel="stylesheet" href="/preview/preview-globals.css">
+    <link rel="stylesheet" href="/preview/todos/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .preview-badge {
+            display: inline-block;
+            background: rgba(186, 225, 255, 0.3);
+            color: #3b82c5;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+    </style>
 </head>
 <body>
     <div class="app-container">
         <!-- Header -->
         <header class="app-header">
             <div class="header-content">
-                <h1 class="app-title">todos<span class="accent">.lol</span></h1>
+                <h1 class="app-title">todos<span class="accent">.lol</span> <span class="preview-badge">Preview</span></h1>
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
                     <svg class="theme-icon sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="5"></circle>
@@ -83,6 +100,6 @@
     <!-- Drag Placeholder -->
     <div class="drag-placeholder" id="dragPlaceholder"></div>
 
-    <script src="app.js"></script>
+    <script src="/preview/todos/app.js"></script>
 </body>
 </html>

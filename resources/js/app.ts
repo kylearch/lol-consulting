@@ -1,5 +1,7 @@
 import '../css/app.css';
 import '../css/landing.css';
+import '../css/lol.css';
+import '../js/lol.js';
 
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
