@@ -462,7 +462,7 @@ onMounted(() => {
               <strong>Direct Email:</strong> <a href="mailto:hello@lol.consulting" class="lol-contact__email">hello@lol.consulting</a>
             </div>
           </div>
-          <form @submit.prevent="submitContactForm" class="lol-contact-form">
+          <form action="https://formspree.io/f/mblzknpr" method="POST" class="lol-contact-form">
             <!-- Flash Messages -->
             <div v-if="flashMessage?.success" class="lol-alert lol-alert--success">
               {{ flashMessage.success }}
@@ -473,17 +473,15 @@ onMounted(() => {
 
             <div class="lol-form-group">
               <label for="name" class="lol-form-label">Name</label>
-              <input v-model="form.name" type="text" id="name" class="lol-form-control" required>
-              <div v-if="form.errors.name" class="lol-form-error">{{ form.errors.name }}</div>
+              <input type="text" id="name" name="name" class="lol-form-control" required>
             </div>
             <div class="lol-form-group">
               <label for="email" class="lol-form-label">Email</label>
-              <input v-model="form.email" type="email" id="email" class="lol-form-control" required>
-              <div v-if="form.errors.email" class="lol-form-error">{{ form.errors.email }}</div>
+              <input type="email" id="email" name="email" class="lol-form-control" required>
             </div>
             <div class="lol-form-group">
               <label for="projectType" class="lol-form-label">Project Type</label>
-              <select v-model="form.projectType" id="projectType" class="lol-form-control">
+              <select id="projectType" name="projectType" class="lol-form-control">
                 <option value="">Select project type</option>
                 <option value="mvp">MVP Development</option>
                 <option value="consulting">Micro-SaaS Consulting</option>
@@ -492,26 +490,23 @@ onMounted(() => {
                 <option value="fullstack">Full-Stack Development</option>
                 <option value="other">Other</option>
               </select>
-              <div v-if="form.errors.projectType" class="lol-form-error">{{ form.errors.projectType }}</div>
             </div>
             <div class="lol-form-group">
               <label for="budget" class="lol-form-label">Budget Range</label>
-              <select v-model="form.budget" id="budget" class="lol-form-control">
+              <select id="budget" name="budget" class="lol-form-control">
                 <option value="">Select budget range</option>
                 <option value="under-25k">Under $25k</option>
                 <option value="25k-50k">$25k - $50k</option>
                 <option value="50k-100k">$50k - $100k</option>
                 <option value="100k-plus">$100k+</option>
               </select>
-              <div v-if="form.errors.budget" class="lol-form-error">{{ form.errors.budget }}</div>
             </div>
             <div class="lol-form-group">
               <label for="description" class="lol-form-label">Project Description</label>
-              <textarea v-model="form.description" id="description" class="lol-form-control" rows="4" placeholder="Tell us about your project idea, goals, and any specific requirements..."></textarea>
-              <div v-if="form.errors.description" class="lol-form-error">{{ form.errors.description }}</div>
+              <textarea id="description" name="description" class="lol-form-control" rows="4" placeholder="Tell us about your project idea, goals, and any specific requirements..."></textarea>
             </div>
-            <button type="submit" class="lol-btn lol-btn--primary lol-btn--full-width lol-btn--lg" :disabled="form.processing">
-              {{ form.processing ? 'Sending...' : 'Send Message' }}
+            <button type="submit" class="lol-btn lol-btn--primary lol-btn--full-width lol-btn--lg">
+              Send Message
             </button>
           </form>
         </div>
