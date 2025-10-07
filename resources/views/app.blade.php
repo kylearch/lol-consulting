@@ -41,6 +41,9 @@
 
         @vite(['resources/js/app.ts', "resources/js/pages/{$page['component']}.vue"])
         @inertiaHead
+
+        {{-- Umami Analytics --}}
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="1718ad6a-c63e-4ebe-94f8-8a9e63fd8ae4"></script>
     </head>
     <body class="font-sans antialiased">
         @inertia

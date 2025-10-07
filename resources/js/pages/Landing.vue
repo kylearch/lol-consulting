@@ -363,8 +363,6 @@ onMounted(() => {
       }
     }
     </script>
-
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="1718ad6a-c63e-4ebe-94f8-8a9e63fd8ae4"></script>
   </Head>
 
   <div class="landing-page">
