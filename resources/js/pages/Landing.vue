@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
-import { router, useForm, usePage } from '@inertiajs/vue3';
+import { router, useForm, usePage, Head } from '@inertiajs/vue3';
 
 const page = usePage();
 const flashMessage = computed(() => page.props.flash as { success?: string; error?: string });
@@ -294,6 +294,55 @@ onMounted(() => {
 </script>
 
 <template>
+  <Head>
+    <title>lol.consulting - Custom Micro-SaaS Development for Solo Founders</title>
+    <meta name="description" content="We build and manage micro-SaaS platforms while offering custom MVP development, technical architecture, and full-stack services to help solo founders launch their ideas. $25k-$100k+ packages available.">
+    <meta name="keywords" content="micro-saas development, MVP development, solo founder, custom saas, full-stack development, technical architecture, saas consulting, startup development">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lol.consulting/">
+    <meta property="og:title" content="lol.consulting - Custom Micro-SaaS Development for Solo Founders">
+    <meta property="og:description" content="We build and manage micro-SaaS platforms while offering custom MVP development, technical architecture, and full-stack services to help solo founders launch their ideas.">
+    <meta property="og:image" content="https://lol.consulting/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://lol.consulting/">
+    <meta property="twitter:title" content="lol.consulting - Custom Micro-SaaS Development for Solo Founders">
+    <meta property="twitter:description" content="We build and manage micro-SaaS platforms while offering custom MVP development, technical architecture, and full-stack services to help solo founders launch their ideas.">
+    <meta property="twitter:image" content="https://lol.consulting/og-image.png">
+
+    <!-- Additional SEO -->
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="lol.consulting">
+    <link rel="canonical" href="https://lol.consulting/">
+
+    <!-- Schema.org markup for Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "lol.consulting",
+      "url": "https://lol.consulting",
+      "logo": "https://lol.consulting/logo.png",
+      "description": "Custom micro-SaaS development and consulting services for solo founders",
+      "email": "hello@lol.consulting",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "US"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "USD",
+        "lowPrice": "25000",
+        "highPrice": "100000",
+        "offerCount": "5"
+      }
+    }
+    </script>
+  </Head>
+
   <div class="landing-page">
     <!-- Navigation -->
     <nav class="lol-nav">
@@ -459,7 +508,7 @@ onMounted(() => {
             <h3>Let's Start a Conversation</h3>
             <p>We respond to all inquiries within 24 hours. Share your project details and we'll get back to you with next steps.</p>
             <div class="lol-contact__direct">
-              <strong>Direct Email:</strong> <a href="mailto:hello@lol.consulting" class="lol-contact__email">hello@lol.consulting</a>
+              <strong>Direct Email:</strong> <a href="mailto:hello@lol.consulting" class="lol-contact__email" aria-label="Email us at hello@lol.consulting">hello@lol.consulting</a>
             </div>
           </div>
           <form action="https://formspree.io/f/mblzknpr" method="POST" class="lol-contact-form">
