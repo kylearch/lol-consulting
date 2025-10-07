@@ -176,7 +176,26 @@ const splitProductName = (name: string) => {
 const hexToRgb = (hex: string) => {
   // Handle CSS variables
   if (hex.startsWith('var(')) {
-    // Extract CSS variable value from computed styles
+    // In SSR, we can't access the DOM, so return a default color
+    if (typeof document === 'undefined') {
+      // Map CSS variables to their hex values for SSR
+      const colorMap: Record<string, string> = {
+        'var(--coral)': '#FFB3BA',
+        'var(--mint)': '#BAFFC9',
+        'var(--lavender)': '#C9BAFF',
+        'var(--sky)': '#BAE1FF',
+        'var(--rose)': '#FFB3D9'
+      };
+      const mappedHex = colorMap[hex] || '#FFB3BA';
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(mappedHex);
+      return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+      } : { r: 255, g: 179, b: 186 };
+    }
+
+    // Extract CSS variable value from computed styles (browser only)
     const temp = document.createElement('div');
     temp.style.color = hex;
     document.body.appendChild(temp);
@@ -261,6 +280,9 @@ const submitContactForm = () => {
 
 // Initialize rainbow text after component mounts
 onMounted(() => {
+  // Only run in browser
+  if (typeof document === 'undefined') return;
+
   // Call the rainbow text initialization from lol.js
   const rainbowElements = document.querySelectorAll('[data-letters]');
 
